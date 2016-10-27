@@ -27,6 +27,26 @@ func main() {
 			Usage:  "github token to push the catalog",
 			EnvVar: "PLUGIN_GITHUB_TOKEN",
 		},
+		cli.StringFlag{
+			Name:   "github-user",
+			Usage:  "github user to commit the catalog with",
+			EnvVar: "PLUGIN_GITHUB_USER",
+		},
+		cli.StringFlag{
+			Name:   "github-email",
+			Usage:  "github email to commit the catalog with",
+			EnvVar: "PLUGIN_GITHUB_EMAIL",
+		},
+		cli.StringFlag{
+			Name:   "template-name",
+			Usage:  "catalog template entry name",
+			EnvVar: "PLUGIN_TEMPLATE_NAME",
+		},
+		cli.StringFlag{
+			Name:   "template-version",
+			Usage:  "catalog template entry version",
+			EnvVar: "PLUGIN_TEMPLATE_VERSION",
+		},
 
 		//
 		// repo args
@@ -241,8 +261,12 @@ func run(c *cli.Context) error {
 			},
 		},
 		Config: Config{
-			CatalogRepo: c.String("catalog-repo"),
-			GithubToken: c.String("github-token"),
+			CatalogRepo:     c.String("catalog-repo"),
+			GithubEmail:     c.String("github-email"),
+			GithubUser:      c.String("github-user"),
+			GithubToken:     c.String("github-token"),
+			TemplateName:    c.String("template-name"),
+			TemplateVersion: c.String("template-version"),
 		},
 	}
 
